@@ -6,4 +6,19 @@ class CalcController {
     this._actualDate;
 
   }
+
+  get displayCalc(){
+    return this._displayCalc;
+  }
+
+  set displayCalc(value){
+    this._displayCalc = value;
+  }
+
+  get actualDate(){
+    return this._actualDate;
+  }
+  set actualDate(value){
+    this._actualDate = value;
+  }
 }
