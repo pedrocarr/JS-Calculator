@@ -15,7 +15,7 @@ class CalcController {
 
   initialize(){
 
-
+      console.log("this._operation");
       this.setDisplayDateTime();
 
       setInterval(()=>{
@@ -25,7 +25,7 @@ class CalcController {
       }, 1000);
   }
 
-
+  
 
   addEventListenerAll(element, events, fn){
 
