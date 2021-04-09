@@ -15,7 +15,6 @@ class CalcController {
 
   initialize(){
 
-      console.log("this._operation");
       this.setDisplayDateTime();
 
       setInterval(()=>{
@@ -25,7 +24,7 @@ class CalcController {
       }, 1000);
   }
 
-  
+
 
   addEventListenerAll(element, events, fn){
 
@@ -52,7 +51,6 @@ class CalcController {
   addOperation(value){
 
       this._operation.push(value);
-
       console.log(this._operation);
   }
 
@@ -105,7 +103,7 @@ class CalcController {
       case '8':
       case '9':
 
-        this.addOperation(parseInt(value));
+        this.addOperation(parseInt(value))
         break;
 
 
@@ -124,6 +122,8 @@ class CalcController {
       this.addEventListenerAll(btn, "click drag", e => {
 
         let textBtn = btn.className.baseVal.replace("btn-","");
+
+        this.execBtn(textBtn);
 
       });
 
