@@ -55,26 +55,45 @@ class CalcController {
 
   }
 
+  setLastOperation(value){
+
+    this._operation[this._operation.length - 1] = value;
+  }
+
   isOperator(value){
 
-    return (['+', '-', '*', '%', '/'].indexOf(value) > -1);
+      return (['+', '-', '*', '%', '/'].indexOf(value) > -1);
 
   }
 
   addOperation(value){
 
+      console.log('A', isNaN(this.getLastOperation()));
+
+
+
     if(isNaN(this.getLastOperation())) {
+
+
         if(this.isOperator(value)) {
-          // TRocar o operador
-          this._operation[this._operation.length-1] = value;
+          // Trocar o operador
+            this._setLastOperation(value);
+
+        } else if (isNaN(value)) {
+              // Outra coisa
+              console.log(value);
+
         } else {
-          // Outra coisa
-          console.log(value);
+
+
+              this._operation.push(value);
+
+
         }
     } else {
 
       let newValue = this.getLastOperation().toString() + value.toString();
-      this._operation.push(newValue);
+      this.setLastOperation(parseInt(newValue));
     }
 
       console.log(this._operation);
@@ -112,7 +131,7 @@ class CalcController {
         this.addOperation('%');
           break;
       case 'igual':
-        this.addOperation('=');
+
         break;
       case 'ponto':
         this.addOperation('.')
