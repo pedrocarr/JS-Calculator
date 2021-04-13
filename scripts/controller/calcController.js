@@ -68,7 +68,7 @@ class CalcController {
 
   addOperation(value){
 
-      console.log('A', isNaN(this.getLastOperation()));
+      console.log('A', value, isNaN(this.getLastOperation()));
 
 
 
