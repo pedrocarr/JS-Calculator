@@ -92,6 +92,12 @@ class CalcController {
         }
     } else {
 
+
+      if (this.isOperator(value)) {
+
+        
+      }
+
       let newValue = this.getLastOperation().toString() + value.toString();
       this.setLastOperation(parseInt(newValue));
     }
