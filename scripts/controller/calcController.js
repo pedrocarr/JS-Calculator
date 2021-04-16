@@ -76,18 +76,17 @@ class CalcController {
       last = this._operation.pop();
 
 
-      this.lastNumber = this.getResult;
-    }
+      this._lastNumber = this.getResult();
 
-    if (this._operation.length == 3) {
+    } else if (this._operation.length == 3) {
 
-      this.lastNumber = this.getLastItem(false);
+      this._lastNumber = this.getLastItem(false);
     }
 
     console.log('_lastOperator', this._lastOperator);
     console.log('_lastNumber', this._lastNumber);
 
-    let result = this.getResult;
+    let result = this.getResult();
 
     if (last == '%') {
 
