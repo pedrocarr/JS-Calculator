@@ -70,12 +70,22 @@ class CalcController {
 
     let last = '';
 
+    this._lastOperator = this.getLastItem();
+
     if (this._operation.length > 3) {
       last = this._operation.pop();
+
 
       this.lastNumber = this.getResult;
     }
 
+    if (this._operation.length == 3) {
+
+      this.lastNumber = this.getLastItem(false);
+    }
+
+    console.log('_lastOperator', this._lastOperator);
+    console.log('_lastNumber', this._lastNumber);
 
     let result = this.getResult;
 
@@ -107,37 +117,19 @@ class CalcController {
 
     for (let i = this._operation.length - 1; i >= 0; i--){
 
-      if (isOperator) {
-        if(this.isOperator(this._operation[i])) {
+        if(this.isOperator(this._operation[i]) == isOperator) {
 
           lastItem = this._operation[i]
           break;
         }
-      } else {
-        if(!this.isOperator(this._operation[i])) {
-
-          lastItem = this._operation[i]
-          break;
-        }
-      }
     }
 
     return lastItem;
   }
+
   setLastNumberToDisplay(){
 
-    let lastNumber;
-
-    for (let i = this._operation.length - 1; i >= 0; i--){
-
-      if(!this.isOperator(this._operation[i])) {
-
-        lastNumber = this._operation[i]
-        break;
-
-      }
-    }
-
+    let lastNumber = this.getLastItem(false);
     if (!lastNumber) lastNumber = 0;
     this.displayCalc = lastNumber;
   }
