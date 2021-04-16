@@ -1,5 +1,8 @@
 class CalcController {
   constructor() {
+
+    this._lastOperator = '';
+    this._lastNumber = '';
     this._operation = [];
     this._locale = "pt-BR";
     this._displayCalcEl = document.querySelector("#display");
@@ -16,6 +19,7 @@ class CalcController {
     setInterval(() => {
       this.setDisplayDateTime();
     }, 1000);
+    this.setLastNumberToDisplay();
   }
 
   addEventListenerAll(element, events, fn) {
@@ -57,10 +61,23 @@ class CalcController {
     }
   }
 
+  getResult(){
+
+      return eval(this._operation.join(""));
+  }
+
   calc(){
 
-    let last = this._operation.pop();
-    let result = eval(this._operation.join(""));
+    let last = '';
+
+    if (this._operation.length > 3) {
+      last = this._operation.pop();
+
+      this.lastNumber = this.getResult;
+    }
+
+
+    let result = this.getResult;
 
     if (last == '%') {
 
@@ -71,7 +88,9 @@ class CalcController {
     } else {
 
 
-      this._operation = [result, last];
+      this._operation = [result];
+
+      if (last) this._operation.push(last);
 
 
     }
@@ -80,6 +99,30 @@ class CalcController {
 
     this.setLastNumberToDisplay();
 
+  }
+
+  getLastItem(isOperator = true){
+
+    let lastItem;
+
+    for (let i = this._operation.length - 1; i >= 0; i--){
+
+      if (isOperator) {
+        if(this.isOperator(this._operation[i])) {
+
+          lastItem = this._operation[i]
+          break;
+        }
+      } else {
+        if(!this.isOperator(this._operation[i])) {
+
+          lastItem = this._operation[i]
+          break;
+        }
+      }
+    }
+
+    return lastItem;
   }
   setLastNumberToDisplay(){
 
@@ -155,6 +198,7 @@ class CalcController {
         this.addOperation("%");
         break;
       case "igual":
+        this.calc();
         break;
       case "ponto":
         this.addOperation(".");
