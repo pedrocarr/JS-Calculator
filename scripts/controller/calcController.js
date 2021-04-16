@@ -26,10 +26,12 @@ class CalcController {
 
   clearAll() {
     this._operation = [];
+    this.setLastNumberToDisplay();
   }
 
   clearEntry() {
     this._operation.pop();
+    this.setLastNumberToDisplay();
   }
 
   getLastOperation() {
@@ -64,6 +66,7 @@ class CalcController {
 
       result /= 100;
       // it means that result = result / 100
+      this._operation = [result];
 
     } else {
 
@@ -91,7 +94,9 @@ class CalcController {
 
       }
     }
-      this.displayCalc = lastNumber;
+
+    if (!lastNumber) lastNumber = 0;
+    this.displayCalc = lastNumber;
   }
 
   addOperation(value) {
